@@ -1,58 +1,147 @@
-# React Challenges
+[![CI/CD](https://github.com/yourusername/react-challenges/actions/workflows/ci.yml/badge.svg)](https://github.com/yourusername/react-challenges/actions/workflows/ci.yml)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue.svg)](https://www.typescriptlang.org/)
+[![React](https://img.shields.io/badge/React-18.0-blue.svg)](https://reactjs.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
-A modern web application for practicing coding challenges with real-time testing and solution validation.
+# React Challenges Platform
 
-## Features
+A modern, interactive coding platform built with React and TypeScript, designed to help developers improve their programming skills through hands-on challenges.
 
-- **Interactive Coding Environment**
-  - Real-time code editing with Monaco Editor
-  - Support for both JavaScript and TypeScript
-  - Syntax highlighting and code completion
+## 📸 Screenshots
 
-- **Challenge Management**
-  - Create and manage coding challenges
-  - Define test cases and solutions
-  - Track user progress and completion
+### Challenge List View
+<div style="display: flex; gap: 20px; margin-bottom: 20px;">
+  <div>
+    <img src="./public/screenshots/challenge-list-light.png" alt="Challenge List Light Mode" width="400"/>
+    <p style="text-align: center;">Light Mode</p>
+  </div>
+  <div>
+    <img src="./public/screenshots/challenge-list-dark.png" alt="Challenge List Dark Mode" width="400"/>
+    <p style="text-align: center;">Dark Mode</p>
+  </div>
+</div>
 
-- **Real-time Testing**
-  - Instant test execution
-  - Detailed test results
-  - Support for multiple test cases
+### Challenge Details
+<div style="display: flex; gap: 20px; margin-bottom: 20px;">
+  <div>
+    <img src="./public/screenshots/challenge-details-light.png" alt="Challenge Details Light Mode" width="400"/>
+    <p style="text-align: center;">Light Mode</p>
+  </div>
+  <div>
+    <img src="./public/screenshots/challenge-details-dark.png" alt="Challenge Details Dark Mode" width="400"/>
+    <p style="text-align: center;">Dark Mode</p>
+  </div>
+</div>
 
-- **User Progress Tracking**
-  - Track completed challenges
-  - Earn points for successful solutions
-  - View progress statistics
+### Code Editor
+<div style="display: flex; gap: 20px; margin-bottom: 20px;">
+  <div>
+    <img src="./public/screenshots/code-editor-light.png" alt="Code Editor Light Mode" width="400"/>
+    <p style="text-align: center;">Light Mode</p>
+  </div>
+  <div>
+    <img src="./public/screenshots/code-editor-dark.png" alt="Code Editor Dark Mode" width="400"/>
+    <p style="text-align: center;">Dark Mode</p>
+  </div>
+</div>
+
+### Test Results
+<div style="display: flex; gap: 20px; margin-bottom: 20px;">
+  <div>
+    <img src="./public/screenshots/test-results-light.png" alt="Test Results Light Mode" width="400"/>
+    <p style="text-align: center;">Light Mode</p>
+  </div>
+  <div>
+    <img src="./public/screenshots/test-results-dark.png" alt="Test Results Dark Mode" width="400"/>
+    <p style="text-align: center;">Dark Mode</p>
+  </div>
+</div>
+
+### Admin Dashboard
+<div style="display: flex; gap: 20px; margin-bottom: 20px;">
+  <div>
+    <img src="./public/screenshots/admin-dashboard-light.png" alt="Admin Dashboard Light Mode" width="400"/>
+    <p style="text-align: center;">Light Mode</p>
+  </div>
+  <div>
+    <img src="./public/screenshots/admin-dashboard-dark.png" alt="Admin Dashboard Dark Mode" width="400"/>
+    <p style="text-align: center;">Dark Mode</p>
+  </div>
+</div>
+
+### User Profile
+<div style="display: flex; gap: 20px; margin-bottom: 20px;">
+  <div>
+    <img src="./public/screenshots/user-profile-light.png" alt="User Profile Light Mode" width="400"/>
+    <p style="text-align: center;">Light Mode</p>
+  </div>
+  <div>
+    <img src="./public/screenshots/user-profile-dark.png" alt="User Profile Dark Mode" width="400"/>
+    <p style="text-align: center;">Dark Mode</p>
+  </div>
+</div>
+
+## 🌟 Key Features
+
+- **Interactive Code Editor**
+  - Real-time code execution
+  - Support for JavaScript and TypeScript
+  - Syntax highlighting and intelligent code completion
+  - Error detection and debugging tools
+
+- **Challenge System**
+  - Multiple difficulty levels (Beginner, Intermediate, Expert)
+  - Real-time test execution and feedback
+  - Comprehensive test cases with detailed explanations
+  - Progress tracking and performance metrics
+
+- **User Experience**
+  - Clean, modern Material-UI design
+  - Responsive layout for all devices
+  - Dark/Light theme support
+  - Intuitive navigation and workflow
 
 - **Admin Dashboard**
-  - Create and manage challenges
-  - View user statistics
-  - Monitor challenge completion rates
+  - Challenge management system
+  - User analytics and insights
+  - Performance monitoring
+  - Content moderation tools
 
-## Tech Stack
+## 🚀 Live Demo
 
-- **Frontend**
-  - React
-  - TypeScript
-  - Material-UI
-  - Monaco Editor
-  - Firebase (Authentication & Firestore)
+Check out the live demo: [React Challenges Platform](https://react-challenges-platform.web.app)
 
-- **Development Tools**
-  - Vite
-  - ESLint
-  - Prettier
-  - TypeScript
+## 🛠️ Technology Stack
 
-## Getting Started
+### Frontend
+- React 18 with TypeScript
+- Material-UI (MUI) for UI components
+- Monaco Editor for code editing
+- React Router v6 for navigation
+- Context API for state management
 
-### Prerequisites
+### Backend & Infrastructure
+- Firebase Authentication
+- Cloud Firestore for data storage
+- Firebase Hosting
+- Firebase Security Rules
+
+### Development Tools
+- Vite for fast development and building
+- ESLint for code quality
+- Prettier for code formatting
+- TypeScript for type safety
+- Jest for testing
+
+## 📋 Prerequisites
 
 - Node.js (v14 or higher)
 - npm or yarn
 - Firebase account
+- Git
 
-### Installation
+## 🔧 Installation
 
 1. Clone the repository:
    ```bash
@@ -65,61 +154,89 @@ A modern web application for practicing coding challenges with real-time testing
    npm install
    ```
 
-3. Set up Firebase:
-   - Create a new Firebase project
-   - Enable Authentication and Firestore
-   - Add your Firebase configuration to `src/config/firebase.ts`
+3. Set up environment variables:
+   ```bash
+   cp .env.example .env
+   ```
+   Fill in your Firebase configuration details in the .env file.
 
 4. Start the development server:
    ```bash
    npm run dev
    ```
 
-## Project Structure
+## 📁 Project Structure
 
 ```
-src/
-├── components/         # React components
-│   ├── Admin/         # Admin dashboard components
-│   └── ChallengeSolver/ # Challenge solving interface
-├── config/            # Configuration files
-├── contexts/          # React contexts
-├── data/             # Challenge data
-├── services/         # API and service functions
-├── types/            # TypeScript type definitions
-└── utils/            # Utility functions
+react-challenges/
+├── src/
+│   ├── components/      # Reusable UI components
+│   ├── contexts/        # React contexts
+│   ├── hooks/          # Custom React hooks
+│   ├── pages/          # Page components
+│   ├── services/       # API and service functions
+│   ├── types/          # TypeScript definitions
+│   └── utils/          # Utility functions
+├── public/             # Static assets
+└── tests/              # Test files
 ```
 
-## Creating Challenges
+## 🧪 Testing
 
-1. Access the Admin Dashboard
-2. Click "Create New Challenge"
-3. Fill in the challenge details:
-   - Title and description
-   - Difficulty level
-   - Points
-   - Starter code
-   - Test cases
-   - Solution
+Run the test suite:
+```bash
+npm test
+```
 
-## Contributing
+Run tests with coverage:
+```bash
+npm run test:coverage
+```
+
+## 🚀 Deployment
+
+1. Build the project:
+   ```bash
+   npm run build
+   ```
+
+2. Deploy to Firebase:
+   ```bash
+   npm run deploy
+   ```
+
+## 🤝 Contributing
 
 1. Fork the repository
-2. Create a feature branch
+2. Create your feature branch
 3. Commit your changes
 4. Push to the branch
 5. Create a Pull Request
 
-## License
+Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
+
+## 📈 Future Improvements
+
+- [ ] Add more challenge categories
+- [ ] Implement real-time collaboration
+- [ ] Add code sharing functionality
+- [ ] Integrate with GitHub for authentication
+- [ ] Add more programming languages support
+- [ ] Implement a mentorship system
+
+## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## Acknowledgments
+## 👏 Acknowledgments
 
 - [Monaco Editor](https://microsoft.github.io/monaco-editor/)
 - [Material-UI](https://mui.com/)
 - [Firebase](https://firebase.google.com/)
+- All contributors who have helped this project grow
 
-## Developer
+## 📞 Contact
 
-Adam Matar - https://linkedin.com/in/adammatar
+Your Name - [Your Email](mailto:your.email@example.com)
+
+Project Link: [https://github.com/yourusername/react-challenges](https://github.com/yourusername/react-challenges)
