@@ -110,7 +110,7 @@ A modern, interactive coding platform built with React and TypeScript, designed 
 
 ## 🚀 Live Demo
 
-Check out the live demo: [React Challenges Platform](https://react-challenges-platform.web.app)
+Coming Soon
 
 ## 🛠️ Technology Stack
 
@@ -237,6 +237,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Contact
 
-Your Name - [Your Email](mailto:your.email@example.com)
+Adam Matar - [mataradam@gmail.com](mailto:mataradam@gmail.com)
 
-Project Link: [https://github.com/yourusername/react-challenges](https://github.com/yourusername/react-challenges)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/adammatar)
+
+Project Link: [https://github.com/adammatar/react-challenges](https://github.com/adammatar/react-challenges)
