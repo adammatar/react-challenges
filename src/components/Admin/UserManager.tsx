@@ -264,19 +264,19 @@ export default function UserManager() {
     }
   };
 
-  const filteredUsers = users.filter(user => {
-    const matchesSearch = 
-      user.username.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      user.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      (user.firstName && user.firstName.toLowerCase().includes(searchQuery.toLowerCase())) ||
-      (user.lastName && user.lastName.toLowerCase().includes(searchQuery.toLowerCase()));
-    
+  const filteredUsers = users.filter((user) => {
+    const matchesSearch = searchQuery === '' || 
+      (user.username?.toLowerCase() || '').includes(searchQuery.toLowerCase()) ||
+      (user.email?.toLowerCase() || '').includes(searchQuery.toLowerCase()) ||
+      (user.firstName?.toLowerCase() || '').includes(searchQuery.toLowerCase()) ||
+      (user.lastName?.toLowerCase() || '').includes(searchQuery.toLowerCase());
+
     const matchesRole = filterRole === 'all' || 
-      (filterRole === 'admin' && user.isAdmin) ||
+      (filterRole === 'admin' && user.isAdmin) || 
       (filterRole === 'user' && !user.isAdmin);
-    
-    const matchesStatus = filterStatus === 'all' ||
-      (filterStatus === 'active' && !user.isBlocked) ||
+
+    const matchesStatus = filterStatus === 'all' || 
+      (filterStatus === 'active' && !user.isBlocked) || 
       (filterStatus === 'blocked' && user.isBlocked);
 
     return matchesSearch && matchesRole && matchesStatus;
@@ -543,19 +543,23 @@ export default function UserManager() {
                         <ListItem>
                           <ListItemText
                             primary="Member Since"
-                            secondary={formatDistanceToNow(
-                              new Date(selectedUser.createdAt.seconds * 1000),
-                              { addSuffix: true }
-                            )}
+                            secondary={selectedUser.createdAt?.seconds 
+                              ? formatDistanceToNow(
+                                  new Date(selectedUser.createdAt.seconds * 1000),
+                                  { addSuffix: true }
+                                )
+                              : 'N/A'}
                           />
                         </ListItem>
                         <ListItem>
                           <ListItemText
                             primary="Last Login"
-                            secondary={formatDistanceToNow(
-                              new Date(selectedUser.lastLogin.seconds * 1000),
-                              { addSuffix: true }
-                            )}
+                            secondary={selectedUser.lastLogin?.seconds 
+                              ? formatDistanceToNow(
+                                  new Date(selectedUser.lastLogin.seconds * 1000),
+                                  { addSuffix: true }
+                                )
+                              : 'N/A'}
                           />
                         </ListItem>
                       </List>

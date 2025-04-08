@@ -39,8 +39,9 @@ interface Challenge {
   completedBy: number;
   requirements: string[];
   testCases: Array<{
-    description: string;
-    test: string;
+    input: string;
+    expectedOutput: string;
+    isHidden: boolean;
   }>;
   imageUrl?: string;
 }
@@ -179,8 +180,17 @@ export default function ChallengeDetails() {
                     <CheckCircleIcon color="primary" />
                   </ListItemIcon>
                   <ListItemText 
-                    primary={testCase.description}
-                    secondary={<code>{testCase.test}</code>}
+                    primary={`Test Case ${index + 1}${testCase.isHidden ? ' (Hidden)' : ''}`}
+                    secondary={
+                      <Box component="div" sx={{ mt: 1 }}>
+                        <Typography variant="body2" component="span" sx={{ display: 'block' }}>
+                          Input: <code>{testCase.input}</code>
+                        </Typography>
+                        <Typography variant="body2" component="span" sx={{ display: 'block', mt: 0.5 }}>
+                          Expected Output: <code>{testCase.expectedOutput}</code>
+                        </Typography>
+                      </Box>
+                    }
                   />
                 </ListItem>
               ))}

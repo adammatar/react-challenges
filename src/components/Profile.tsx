@@ -109,7 +109,7 @@ const Profile: React.FC = () => {
               alt={profile.username}
               sx={{ width: 100, height: 100 }}
             >
-              {profile.username[0].toUpperCase()}
+              {profile.username ? profile.username[0].toUpperCase() : '?'}
             </Avatar>
             <Box sx={{ flex: 1 }}>
               <Typography variant="h4" gutterBottom>

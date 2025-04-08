@@ -217,7 +217,15 @@ export const ChallengeSolver: React.FC<ChallengeSolverProps> = ({ challenge }) =
   };
 
   return (
-    <Box sx={{ p: 2, position: 'relative' }}>
+    <Box sx={{ 
+      p: 3,
+      position: 'relative',
+      display: 'flex',
+      flexDirection: 'column',
+      gap: 3,
+      height: '100%',
+      bgcolor: 'background.default'
+    }}>
       {showCelebration && (
         <>
           <Confetti
@@ -248,295 +256,188 @@ export const ChallengeSolver: React.FC<ChallengeSolverProps> = ({ challenge }) =
               }}
             >
               <CelebrationIcon sx={{ fontSize: 60, color: 'primary.main', mb: 2 }} />
-              <Typography variant="h4" component="h2" gutterBottom>
-                Congratulations! 🎉
+              <Typography variant="h5" component="h2" gutterBottom>
+                Challenge Completed!
               </Typography>
-              <Typography variant="body1" sx={{ mb: 3 }}>
-                You've successfully completed the challenge and earned {challenge.points} points!
+              <Typography variant="body1" color="text.secondary">
+                Congratulations! You've earned {challenge.points} points.
               </Typography>
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={() => setShowCelebration(false)}
-                startIcon={<CelebrationIcon />}
-              >
-                Continue
-              </Button>
             </Box>
           </Modal>
         </>
       )}
 
-      {/* Header */}
-      <Box sx={{ mb: 4 }}>
-        <Typography variant="h4" gutterBottom>
-          {challenge.title}
-        </Typography>
-        <Box sx={{ display: 'flex', gap: 2, alignItems: 'center', mb: 2 }}>
-          <Chip
-            label={challenge.difficulty}
-            color={challenge.difficulty === 'beginner' ? 'success' : challenge.difficulty === 'intermediate' ? 'warning' : 'error'}
-            size="small"
-          />
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-            <StarIcon fontSize="small" color="primary" />
-            <Typography variant="body2">{challenge.points} points</Typography>
-          </Box>
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-            <TimerIcon fontSize="small" />
-            <Typography variant="body2">{challenge.estimatedTime}</Typography>
-          </Box>
-        </Box>
-      </Box>
-
-      {/* Description and Requirements */}
-      <Paper sx={{ p: 3, mb: 3 }}>
-        <Typography variant="h6" gutterBottom>
-          Description
-        </Typography>
-        <Typography paragraph>
-          {challenge.description}
-        </Typography>
-
-        <Typography variant="h6" gutterBottom>
-          Example
-        </Typography>
-        <Paper sx={{ p: 2, bgcolor: 'grey.100', mb: 2 }}>
-          <Typography variant="subtitle2" gutterBottom>Input:</Typography>
-          <Typography component="pre" sx={{ whiteSpace: 'pre-wrap', fontFamily: 'monospace' }}>
-            {challenge.example.input}
-          </Typography>
-          <Typography variant="subtitle2" gutterBottom sx={{ mt: 2 }}>Output:</Typography>
-          <Typography component="pre" sx={{ whiteSpace: 'pre-wrap', fontFamily: 'monospace' }}>
-            {challenge.example.output}
-          </Typography>
-          {challenge.example.explanation && (
-            <>
-              <Typography variant="subtitle2" gutterBottom sx={{ mt: 2 }}>Explanation:</Typography>
-              <Typography component="pre" sx={{ whiteSpace: 'pre-wrap', fontFamily: 'monospace' }}>
-                {challenge.example.explanation}
-              </Typography>
-            </>
-          )}
-        </Paper>
-
-        <Typography variant="h6" gutterBottom>
-          Requirements
-        </Typography>
-        <Box component="ul" sx={{ pl: 2 }}>
-          {challenge.requirements.map((req, index) => (
-            <Typography component="li" key={index} sx={{ mb: 1 }}>
-              {req}
-            </Typography>
-          ))}
-        </Box>
-      </Paper>
-
-      {/* Code Editor and Tests */}
-      <Box sx={{ display: 'flex', gap: 2 }}>
-        <Box sx={{ flex: 1 }}>
-          <Paper sx={{ height: '500px', overflow: 'hidden' }}>
-            <Tabs value={language} onChange={handleLanguageChange} sx={{ borderBottom: 1, borderColor: 'divider' }}>
-              <Tab label="JavaScript" value="javascript" />
-              <Tab label="TypeScript" value="typescript" />
-            </Tabs>
-            <Editor
-              height="400px"
-              language={language}
-              value={code}
-              onChange={handleCodeChange}
-              theme="vs-dark"
-              options={{
-                minimap: { enabled: false },
-                fontSize: 14,
-                lineNumbers: 'on',
-                roundedSelection: false,
-                scrollBeyondLastLine: false,
-                readOnly: false,
-                automaticLayout: true,
-                tabSize: 2,
-                wordWrap: 'on',
-                formatOnPaste: true,
-                formatOnType: true,
-                suggestOnTriggerCharacters: true,
-                acceptSuggestionOnEnter: 'on',
-                tabCompletion: 'on',
-                wordBasedSuggestions: true,
-                parameterHints: { enabled: true },
-                quickSuggestions: true,
-                suggest: {
-                  showWords: true,
-                  showKeywords: true,
-                  showSnippets: true,
-                  showClasses: true,
-                  showFunctions: true,
-                  showVariables: true,
-                  showReferences: true,
-                  showValues: true,
-                  showConstants: true,
-                  showEnums: true,
-                  showInterfaces: true,
-                  showTypeParameters: true,
-                  showModules: true,
-                  showProperties: true,
-                  showMethods: true,
-                  showEvents: true,
-                  showOperators: true,
-                  showUnits: true,
-                  showColors: true,
-                  showFiles: true,
-                  showFolders: true
-                }
-              }}
-            />
-          </Paper>
-          <Box sx={{ mt: 2, display: 'flex', justifyContent: 'space-between' }}>
-            <Button
-              variant="outlined"
-              onClick={handleShowSolution}
-              startIcon={showSolution ? <HideSolutionIcon /> : <ShowSolutionIcon />}
-            >
-              {showSolution ? 'Hide Solution' : 'Show Solution'}
-            </Button>
-            <Stack direction="row" spacing={2}>
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={handleRunTests}
-                disabled={isRunning}
-                startIcon={<RunIcon />}
-              >
-                {isRunning ? 'Running...' : 'Run Tests'}
-              </Button>
-              <Button
-                variant="contained"
-                color="success"
-                onClick={handleSubmit}
-                disabled={!testResults.length || !testResults.every(result => result.passed) || isCompleted}
-                startIcon={<SubmitIcon />}
-              >
-                {isCompleted ? 'Completed' : 'Submit'}
-              </Button>
-            </Stack>
-          </Box>
-        </Box>
-
-        <Box sx={{ flex: 1 }}>
-          <TestEnvironment challenge={challenge} userCode={code} language={language} />
-        </Box>
-      </Box>
-
-      {/* Solution Drawer */}
-      <Drawer
-        anchor="right"
-        open={showSolution}
-        onClose={handleShowSolution}
-        sx={{
-          width: 400,
-          flexShrink: 0,
-          '& .MuiDrawer-paper': {
-            width: 400,
-            boxSizing: 'border-box',
-            p: 2
-          },
-        }}
-      >
-        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
-          <Typography variant="h6">Solution</Typography>
-          <IconButton onClick={handleShowSolution}>
-            <HideSolutionIcon />
-          </IconButton>
-        </Box>
-        <Paper sx={{ p: 2, bgcolor: 'grey.100', mb: 2 }}>
-          <Typography variant="subtitle2" gutterBottom>Solution:</Typography>
-          <Box
-            component="pre"
-            sx={{
-              whiteSpace: 'pre-wrap',
-              fontFamily: 'monospace',
-              bgcolor: 'background.paper',
-              p: 2,
-              borderRadius: 1,
-              overflow: 'auto'
-            }}
-          >
-            {challenge.solution}
-          </Box>
-        </Paper>
-        <Alert severity="info" sx={{ mt: 2 }}>
-          Try to solve the challenge on your own first. Use the solution only as a reference if you get stuck.
-        </Alert>
-      </Drawer>
-
       {/* Solution Display */}
       {showSolution && (
-        <Box sx={{ mt: 2 }}>
-          <Typography variant="h6" gutterBottom>
-            Solution
-          </Typography>
-          <Paper sx={{ p: 2, bgcolor: 'background.paper' }}>
-            <Typography variant="subtitle1" gutterBottom>
-              JavaScript Solution:
-            </Typography>
-            <Box
-              component="pre"
-              sx={{
-                p: 2,
-                bgcolor: 'background.default',
-                borderRadius: 1,
-                overflow: 'auto',
-                whiteSpace: 'pre-wrap',
-                fontFamily: 'monospace',
-              }}
-            >
-              {challenge.solution.javascript}
-            </Box>
-            <Typography variant="subtitle1" gutterBottom sx={{ mt: 2 }}>
-              TypeScript Solution:
-            </Typography>
-            <Box
-              component="pre"
-              sx={{
-                p: 2,
-                bgcolor: 'background.default',
-                borderRadius: 1,
-                overflow: 'auto',
-                whiteSpace: 'pre-wrap',
-                fontFamily: 'monospace',
-              }}
-            >
-              {challenge.solution.typescript}
-            </Box>
-            <Typography variant="body2" sx={{ mt: 2, fontStyle: 'italic' }}>
-              Try to solve the challenge on your own first. Use the solution only as a reference if you get stuck.
-            </Typography>
+        <Paper sx={{ 
+          p: 3,
+          bgcolor: 'background.paper',
+          border: 1,
+          borderColor: 'divider',
+          borderRadius: 2,
+          mb: 3
+        }}>
+          <Box sx={{ 
+            display: 'flex', 
+            justifyContent: 'space-between', 
+            alignItems: 'center',
+            mb: 2
+          }}>
+            <Typography variant="h6">Solution</Typography>
+            <IconButton onClick={handleShowSolution} size="small">
+              <HideSolutionIcon />
+            </IconButton>
+          </Box>
+          
+          <Paper sx={{ 
+            p: 2,
+            bgcolor: 'background.default',
+            borderRadius: 1,
+            overflow: 'auto',
+            '& pre': {
+              margin: 0,
+              fontFamily: 'monospace',
+              whiteSpace: 'pre-wrap',
+              color: 'text.primary'
+            }
+          }}>
+            <pre>{challenge.solution}</pre>
           </Paper>
-        </Box>
+
+          <Alert 
+            severity="info" 
+            sx={{ 
+              mt: 3,
+              bgcolor: 'info.dark',
+              color: 'common.white',
+              '& .MuiAlert-icon': {
+                color: 'common.white'
+              }
+            }}
+          >
+            Try to solve the challenge on your own first. Use the solution only as a reference if you get stuck.
+          </Alert>
+        </Paper>
       )}
 
-      {/* Test Results */}
-      <Paper sx={{ p: 2, bgcolor: 'grey.100', mb: 2 }}>
-        <Typography variant="subtitle2" gutterBottom>Test Results:</Typography>
-        <Stack spacing={1}>
-          {testResults.map((result, index) => (
-            <Box key={index} sx={{ display: 'flex', alignItems: 'center' }}>
-              {result.passed ? (
-                <PassIcon color="success" sx={{ mr: 1 }} />
-              ) : (
-                <FailIcon color="error" sx={{ mr: 1 }} />
-              )}
-              <Typography variant="body2">
-                Test Case {index + 1}: {result.name || `Input: ${challenge.testCases[index].input}`}
-                {!result.passed && result.error && (
-                  <Typography variant="caption" color="error" display="block">
-                    {result.error}
-                  </Typography>
-                )}
-              </Typography>
+      {/* Header */}
+      <Box sx={{ 
+        display: 'flex', 
+        justifyContent: 'space-between', 
+        alignItems: 'center',
+        mb: 2
+      }}>
+        <Box>
+          <Typography variant="h5" component="h1" gutterBottom>
+            {challenge.title}
+          </Typography>
+          <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
+            <Chip
+              label={challenge.difficulty}
+              color={challenge.difficulty === 'beginner' ? 'success' : challenge.difficulty === 'intermediate' ? 'warning' : 'error'}
+              size="small"
+            />
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+              <StarIcon fontSize="small" color="primary" />
+              <Typography variant="body2">{challenge.points} points</Typography>
             </Box>
-          ))}
-        </Stack>
-      </Paper>
+          </Box>
+        </Box>
+        <Button
+          variant="outlined"
+          startIcon={showSolution ? <HideSolutionIcon /> : <ShowSolutionIcon />}
+          onClick={handleShowSolution}
+          sx={{ minWidth: 150 }}
+        >
+          {showSolution ? 'Hide Solution' : 'Show Solution'}
+        </Button>
+      </Box>
+
+      {/* Language Tabs */}
+      <Tabs
+        value={language}
+        onChange={handleLanguageChange}
+        sx={{ 
+          borderBottom: 1, 
+          borderColor: 'divider',
+          mb: 2
+        }}
+      >
+        <Tab label="JavaScript" value="javascript" />
+        <Tab label="TypeScript" value="typescript" />
+      </Tabs>
+
+      {/* Editor and Test Environment */}
+      <Box sx={{ 
+        display: 'grid', 
+        gridTemplateColumns: { md: '1fr 1fr' }, 
+        gap: 3,
+        flex: 1,
+        minHeight: 0
+      }}>
+        {/* Code Editor */}
+        <Paper sx={{ 
+          p: 2,
+          height: '100%',
+          minHeight: 500,
+          bgcolor: 'background.paper',
+          '& .monaco-editor': {
+            borderRadius: 1
+          }
+        }}>
+          <Editor
+            height="100%"
+            defaultLanguage={language}
+            value={code}
+            onChange={(value) => handleCodeChange(value || '')}
+            theme="vs-dark"
+            options={{
+              minimap: { enabled: false },
+              fontSize: 14,
+              lineNumbers: 'on',
+              roundedSelection: false,
+              scrollBeyondLastLine: false,
+              readOnly: false,
+              automaticLayout: true,
+            }}
+          />
+        </Paper>
+
+        {/* Test Environment */}
+        <TestEnvironment
+          challenge={challenge}
+          userCode={code}
+          language={language}
+        />
+      </Box>
+
+      {/* Action Buttons */}
+      <Box sx={{ 
+        display: 'flex', 
+        gap: 2,
+        justifyContent: 'flex-end',
+        mt: 2
+      }}>
+        <Button
+          variant="contained"
+          startIcon={<RunIcon />}
+          onClick={handleRunTests}
+          disabled={isRunning}
+          sx={{ minWidth: 120 }}
+        >
+          Run Tests
+        </Button>
+        <Button
+          variant="contained"
+          color="primary"
+          startIcon={<SubmitIcon />}
+          onClick={handleSubmit}
+          disabled={!testResults.every(result => result.passed) || isCompleted}
+          sx={{ minWidth: 120 }}
+        >
+          Submit
+        </Button>
+      </Box>
     </Box>
   );
 }; 

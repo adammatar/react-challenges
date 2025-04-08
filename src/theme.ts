@@ -39,15 +39,15 @@ export const createAppTheme = (mode: PaletteMode) => createTheme({
     },
     background: {
       default: mode === 'dark' ? '#0a1929' : '#f5f5f5',
-      paper: mode === 'dark' ? '#0d2339' : '#ffffff',
+      paper: mode === 'dark' ? '#1a2a3a' : '#ffffff',
     },
     customBackground: {
       gradient: mode === 'dark'
-        ? 'linear-gradient(135deg, rgba(33, 150, 243, 0.1) 0%, rgba(63, 81, 181, 0.1) 100%)'
+        ? 'linear-gradient(135deg, rgba(33, 150, 243, 0.15) 0%, rgba(63, 81, 181, 0.15) 100%)'
         : 'linear-gradient(135deg, rgba(25, 118, 210, 0.05) 0%, rgba(156, 39, 176, 0.05) 100%)',
       gradientLight: 'linear-gradient(135deg, rgba(25, 118, 210, 0.05) 0%, rgba(156, 39, 176, 0.05) 100%)',
-      gradientDark: 'linear-gradient(135deg, rgba(33, 150, 243, 0.1) 0%, rgba(63, 81, 181, 0.1) 100%)',
-      paper: mode === 'dark' ? '#0d2339' : '#ffffff',
+      gradientDark: 'linear-gradient(135deg, rgba(33, 150, 243, 0.15) 0%, rgba(63, 81, 181, 0.15) 100%)',
+      paper: mode === 'dark' ? '#1a2a3a' : '#ffffff',
       default: mode === 'dark' ? '#0a1929' : '#f5f5f5',
     },
     text: {
@@ -138,10 +138,16 @@ export const createAppTheme = (mode: PaletteMode) => createTheme({
       styleOverrides: {
         root: {
           borderRadius: '12px',
-          backgroundImage: 'none',
+          backgroundImage: mode === 'dark' 
+            ? 'linear-gradient(135deg, rgba(33, 150, 243, 0.1) 0%, rgba(63, 81, 181, 0.1) 100%)'
+            : 'none',
+          backgroundColor: mode === 'dark' ? '#1e2f42' : '#ffffff',
           transition: 'transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out',
           '&:hover': {
             transform: 'translateY(-4px)',
+            boxShadow: mode === 'dark' 
+              ? '0 8px 16px rgba(0, 0, 0, 0.3)'
+              : '0 8px 16px rgba(0, 0, 0, 0.1)',
           },
         },
       },
@@ -169,6 +175,16 @@ export const createAppTheme = (mode: PaletteMode) => createTheme({
             : 'none',
           backgroundColor: mode === 'light' ? '#ffffff' : 'transparent',
           borderBottom: `1px solid ${mode === 'dark' ? 'rgba(255, 255, 255, 0.12)' : 'rgba(0, 0, 0, 0.12)'}`,
+        },
+      },
+    },
+    MuiCardContent: {
+      styleOverrides: {
+        root: {
+          backgroundColor: mode === 'dark' ? '#233547' : '#ffffff',
+          '&:last-child': {
+            paddingBottom: 16,
+          },
         },
       },
     },

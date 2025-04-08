@@ -101,39 +101,81 @@ export const TestEnvironment: React.FC<TestEnvironmentProps> = ({ challenge, use
   }, [userCode, challenge.testCases, language]);
 
   return (
-    <Paper sx={{ p: 2, height: '500px', overflow: 'auto' }}>
+    <Paper sx={{ 
+      p: 3,
+      height: '100%',
+      minHeight: 500,
+      overflow: 'auto',
+      bgcolor: 'background.paper',
+      display: 'flex',
+      flexDirection: 'column',
+      gap: 2
+    }}>
       <Typography variant="h6" gutterBottom>
         Test Results
       </Typography>
       
       {isRunning ? (
-        <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
+        <Box sx={{ 
+          display: 'flex', 
+          justifyContent: 'center', 
+          alignItems: 'center', 
+          height: '100%',
+          flex: 1
+        }}>
           <CircularProgress />
         </Box>
       ) : (
-        <Box>
+        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
           {testResults.map((result, index) => (
-            <Box key={index} sx={{ mb: 2 }}>
+            <Paper
+              key={index}
+              sx={{
+                p: 2,
+                bgcolor: result.passed ? 'success.dark' : 'error.dark',
+                color: 'common.white',
+                transition: 'all 0.2s ease-in-out',
+                '&:hover': {
+                  transform: 'translateY(-2px)',
+                  boxShadow: 2
+                }
+              }}
+            >
               <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
                 <Box
                   sx={{
                     width: 20,
                     height: 20,
                     borderRadius: '50%',
-                    bgcolor: result.passed ? 'success.main' : 'error.main',
-                    mr: 1
+                    bgcolor: result.passed ? 'success.light' : 'error.light',
+                    mr: 1,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
                   }}
-                />
-                <Typography variant="body1">
-                  Test Case {index + 1}: {result.name || `Input: ${challenge.testCases[index].input}`}
+                >
+                  {result.passed ? '✓' : '✗'}
+                </Box>
+                <Typography variant="body1" sx={{ fontWeight: 500 }}>
+                  Test Case {index + 1}
                 </Typography>
               </Box>
               {!result.passed && result.error && (
-                <Alert severity="error" sx={{ mt: 1 }}>
+                <Alert 
+                  severity="error" 
+                  sx={{ 
+                    mt: 1,
+                    bgcolor: 'error.main',
+                    color: 'common.white',
+                    '& .MuiAlert-icon': {
+                      color: 'common.white'
+                    }
+                  }}
+                >
                   {result.error}
                 </Alert>
               )}
-            </Box>
+            </Paper>
           ))}
         </Box>
       )}
